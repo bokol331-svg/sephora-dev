@@ -91,7 +91,7 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
   </ul>
 </nav>
 
-<!-- Page 1 -->
+<!-- Page 1 (original) -->
 <div id="page1">
 <header id="home">
   <div class="intro">
@@ -99,9 +99,7 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
     <p>BSIT student (Network & Security track) at the University of the Cordilleras. Born in Sudipen, La Union and newly arrived in Baguio. I enjoy coding, web development, networking, and discussing history & politics.</p>
     <a class="btn" onclick="showPage('about')">Learn More About Me</a>
   </div>
-  <div class="hero-img">
-    <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/6842a58f-7bad-42cc-8b94-fb8e0a2c6130.jpg">
-  </div>
+  <div class="hero-img"><img src="914fe75c-de75-49e6-a142-d5e22ed5db74.jpg"></div>
 </header>
 
 <section id="about" class="section">
@@ -173,6 +171,7 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
 </div>
 
 <script>
+// IntersectionObserver for project cards
 function initObserver(){
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -182,20 +181,24 @@ function initObserver(){
   document.querySelectorAll('.card').forEach(card => observer.observe(card));
 }
 
+// Show/hide pages
 function showPage(pageId){
-  if(pageId==='education'){
-    document.getElementById('page1').style.display='none';
-    document.getElementById('page2').style.display='block';
+  if(pageId === 'education'){
+    document.getElementById('page1').style.display = 'none';
+    document.getElementById('page2').style.display = 'block';
   } else {
-    document.getElementById('page1').style.display='block';
-    document.getElementById('page2').style.display='none';
-    const sec=document.getElementById(pageId);
-    if(sec) window.scrollTo({top:sec.offsetTop-60,behavior:'smooth'});
-    initObserver();
+    document.getElementById('page1').style.display = 'block';
+    document.getElementById('page2').style.display = 'none';
+    const sec = document.getElementById(pageId);
+    if(sec) window.scrollTo({top:sec.offsetTop - 60, behavior:'smooth'});
+    initObserver(); // re-init animations
   }
 }
 
-window.addEventListener('load',()=>{initObserver();});
+// Initialize animations on page load
+window.addEventListener('load', () => {
+  initObserver();
+});
 </script>
 
 </body>
