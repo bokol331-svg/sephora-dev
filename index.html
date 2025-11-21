@@ -17,65 +17,54 @@
   --max-width:1100px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{ font-family:"Poppins",sans-serif; background:linear-gradient(180deg,var(--bg-dark),#1c1c1c); color:var(--text-light); line-height:1.6; scroll-behavior:smooth; }
-nav{ background:rgba(10,10,10,0.95); display:flex;align-items:center;justify-content:space-between; padding:15px var(--page-padding);position:sticky;top:0;z-index:1000; border-bottom:1px solid rgba(255,255,255,0.1); }
-.logo{display:flex;align-items:center;gap:12px;} 
-.logo img{width:44px;height:44px;border-radius:50%;object-fit:contain;border:2px solid var(--accent);} 
-.logo h1{font-family:"Playfair Display",serif;color:var(--accent);} 
-nav ul{list-style:none;display:flex;gap:22px;} 
-nav a{ color:var(--text-light); text-decoration:none; font-weight:600; position:relative; transition:color 0.3s ease; cursor:pointer; } 
-nav a::after{ content:""; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--accent); transition:width 0.3s ease; } 
-nav a:hover{color:var(--accent);} 
-nav a:hover::after{width:100%;}
-header#home{ padding:80px var(--page-padding); display:flex;align-items:center;justify-content:space-between; max-width:var(--max-width);margin:0 auto;gap:40px; }
-.intro{flex:1 1 520px;}
-.intro h1{font-family:"Playfair Display",serif;font-size:3rem;color:#fff;margin-bottom:12px;}
-.intro h1 span{color:var(--accent);}
-.intro p{color:var(--muted);margin-bottom:18px;max-width:55ch;}
-.btn{ display:inline-block; padding:10px 22px; border-radius:24px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; transition:transform .18s ease; cursor:pointer; } 
-.btn:hover{transform:translateY(-3px);}
-.hero-img {
-  flex: 0 0 340px;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid var(--accent);
-  box-shadow: 0 10px 30px rgba(255,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+body{
+  font-family:"Poppins",sans-serif;
+  background:linear-gradient(180deg,var(--bg-dark),#1c1c1c);
+  color:var(--text-light);
+  line-height:1.6;
+  scroll-behavior:smooth;
 }
-.hero-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+.fade-page {opacity: 0;transition: opacity 0.5s ease;}
+.fade-page.active {opacity: 1;}
+
+nav{
+  background:rgba(10,10,10,0.95);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px var(--page-padding);
+  position:sticky;top:0;z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.1);
 }
-.section{padding:64px var(--page-padding);background:var(--bg-light);}
-.section .inner{max-width:var(--max-width);margin:0 auto;}
-.centered{text-align:center;margin-bottom:40px;}
-.centered h2{font-family:"Playfair Display",serif;font-size:2rem;color:var(--accent);}
-.centered p{color:var(--muted);}
-.project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-.card{ background:var(--card-bg); padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.25); text-align:center; border:1px solid rgba(255,255,255,0.1); transition:transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; aspect-ratio:1/1; opacity:0; transform:translateY(30px); }
-.card.visible{ opacity:1; transform:translateY(0); transition:all 0.6s ease; }
-.card:hover{ transform:translateY(-10px) scale(1.03); box-shadow:0 12px 25px rgba(230,57,70,0.4); border:1px solid var(--accent); }
-.card h3{color:var(--accent);margin-bottom:10px;font-family:"Playfair Display",serif;}
-.card p{color:#ddd;}
-.contact-list{list-style:none;margin-top:18px;text-align:center;}
-.contact-list li{margin:10px 0;}
-.contact-list a{color:var(--accent);text-decoration:none;font-weight:600;}
-.contact-list a:hover{text-decoration:underline;}
-footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a; color:#888; border-top:1px solid rgba(255,255,255,0.1); }
+.logo{display:flex;align-items:center;gap:12px;}
+.logo img{width:44px;height:44px;border-radius:50%;object-fit:contain;border:2px solid var(--accent);}
+.logo h1{font-family:"Playfair Display",serif;color:var(--accent);}
+nav ul{list-style:none;display:flex;gap:22px;}
+nav a{color:var(--text-light);text-decoration:none;font-weight:600;cursor:pointer;position:relative;transition:color 0.3s;}
+nav a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:0.3s;}
+nav a:hover{color:var(--accent);}nav a:hover::after{width:100%;}
 
-.page2{display:none; padding:64px var(--page-padding); max-width:var(--max-width); margin:0 auto; background:var(--bg-light);}
-.page2 h2{color:var(--accent); text-align:center; margin-bottom:20px;}
-.page2 ul{list-style:none; padding-left:0; color:#ddd; font-size:1.1rem;}
-.page2 li{margin:20px 0; line-height:1.5;}
-.page2 .btn{display:block; text-align:center; margin:20px auto;}
+header#home{
+  padding:80px var(--page-padding);
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--max-width);margin:0 auto;gap:40px;
+}
+.intro h1{font-family:"Playfair Display",serif;font-size:3rem;margin-bottom:12px;}
+.intro h1 span{color:var(--accent);} .intro p{color:var(--muted);margin-bottom:18px;max-width:55ch;}
+.btn{display:inline-block;padding:10px 22px;border-radius:24px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;cursor:pointer;transition:transform 0.18s;} .btn:hover{transform:translateY(-3px);} 
+.hero-img{width:340px;height:340px;border-radius:50%;overflow:hidden;border:4px solid var(--accent);box-shadow:0 10px 30px rgba(255,0,0,0.4);display:flex;align-items:center;justify-content:center;} .hero-img img{width:100%;height:100%;object-fit:cover;}
 
-@media(max-width:1024px){.project-grid{grid-template-columns:repeat(2,1fr)}} 
-@media(max-width:720px){ header#home{flex-direction:column-reverse;text-align:center;} .project-grid{grid-template-columns:1fr;} }
+.section{padding:64px var(--page-padding);background:var(--bg-light);} .section .inner{max-width:var(--max-width);margin:0 auto;} .centered{text-align:center;margin-bottom:40px;} .centered h2{font-family:"Playfair Display",serif;font-size:2rem;color:var(--accent);} .centered p{color:var(--muted);}
+
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;} .card{background:var(--card-bg);padding:30px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 6px 15px rgba(0,0,0,0.25);aspect-ratio:1/1;text-align:center;opacity:0;transform:translateY(30px);transition:all 0.6s ease;} .card.visible{opacity:1;transform:translateY(0);} .card:hover{transform:translateY(-10px) scale(1.03);border-color:var(--accent);box-shadow:0 12px 25px rgba(230,57,70,0.4);} .card h3{color:var(--accent);margin-bottom:10px;}
+
+.contact-list{text-align:center;list-style:none;} .contact-list li{margin:10px 0;} .contact-list a{color:var(--accent);text-decoration:none;font-weight:600;} .contact-list a:hover{text-decoration:underline;}
+
+footer{padding:36px var(--page-padding);text-align:center;background:#0a0a0a;color:#888;border-top:1px solid rgba(255,255,255,0.1);} 
+
+.page2,.page3{display:none;padding:64px var(--page-padding);max-width:var(--max-width);margin:0 auto;background:var(--bg-light);} .page2 h2,.page3 h2{color:var(--accent);text-align:center;margin-bottom:20px;} .page2 ul,.page3 ul{list-style:none;color:#ddd;font-size:1.1rem;padding:0;} .page2 li,.page3 li{margin:20px 0;line-height:1.5;}
+
+@media(max-width:1024px){.project-grid{grid-template-columns:repeat(2,1fr)}} @media(max-width:720px){header#home{flex-direction:column-reverse;text-align:center;} .project-grid{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -83,21 +72,22 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
 <nav>
   <div class="logo"><img src="1000037617.png"><h1>My Portfolio</h1></div>
   <ul>
-    <li><a onclick="showPage('home')">Home</a></li>
-    <li><a onclick="showPage('about')">About</a></li>
-    <li><a onclick="showPage('projects')">Projects</a></li>
-    <li><a onclick="showPage('contact')">Contact</a></li>
-    <li><a onclick="showPage('education')">Education</a></li>
+    <li><a onclick="switchPage('home')">Home</a></li>
+    <li><a onclick="switchPage('about')">About</a></li>
+    <li><a onclick="switchPage('projects')">Projects</a></li>
+    <li><a onclick="switchPage('contact')">Contact</a></li>
+    <li><a onclick="switchPage('education')">Education</a></li>
+    <li><a onclick="switchPage('extracurricular')">Extra Curricular</a></li>
   </ul>
 </nav>
 
-<!-- Page 1 (original) -->
-<div id="page1">
+<!-- PAGE 1 -->
+<div id="page1" class="fade-page active">
 <header id="home">
   <div class="intro">
     <h1>Welcome — I'm <br><span>Hezekiah Owen L. Bullagay</span></h1>
-    <p>BSIT student (Network & Security track) at the University of the Cordilleras. Born in Sudipen, La Union and newly arrived in Baguio. I enjoy coding, web development, networking, and discussing history & politics.</p>
-    <a class="btn" onclick="showPage('about')">Learn More About Me</a>
+    <p>BSIT student (Network & Security) at the University of the Cordilleras.</p>
+    <a class="btn" onclick="switchPage('about')">Learn More About Me</a>
   </div>
   <div class="hero-img"><img src="914fe75c-de75-49e6-a142-d5e22ed5db74.jpg"></div>
 </header>
@@ -106,21 +96,24 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
   <div class="inner">
     <div class="centered">
       <h2>About Me</h2>
-      <p>I am Hezekiah Owen Bullagay, born in Sudipen, La Union, and a newcomer to Baguio. I am 18 years old and a newly enrolled freshman at the University of the Cordilleras.</p>
+      <p>Born in Sudipen, La Union. Now studying in Baguio as a BSIT student.</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
       <div>
         <h3 style="color:var(--accent)">Additional Info</h3>
-        <p>I hold a brown belt in karate and a green belt in arnis. I am a first-year student of the University of the Cordilleras, taking CITCS with a major in Network and Security.</p>
+        <p>
+          Brown Belt – Karate (AJKW)<br>
+          Green Belt – Arnis (AJKW)
+        </p>
       </div>
       <div>
         <h3 style="color:var(--accent)">Areas of Interest</h3>
         <ul>
           <li>• Coding</li>
-          <li>• Web development</li>
+          <li>• Web Development</li>
           <li>• Networking</li>
           <li>• History</li>
-          <li>• Political debate</li>
+          <li>• Political Debate</li>
         </ul>
       </div>
     </div>
@@ -131,16 +124,16 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
   <div class="inner">
     <div class="centered"><h2>Projects</h2></div>
     <div class="project-grid">
-      <article class="card"><h3>Project One</h3><p>Studying coding languages and binary systems — including Java, HTML, and Python.</p></article>
-      <article class="card"><h3>Project Two</h3><p>This portfolio website showcasing my progress and growth as a student developer.</p></article>
-      <article class="card"><h3>Project Three</h3><p>Exploring unethical hacking to understand system vulnerabilities and strengthen defenses.</p></article>
+      <article class="card"><h3>Project One</h3><p>Studying Java, HTML, and Python.</p></article>
+      <article class="card"><h3>Project Two</h3><p>This portfolio website documenting my growth.</p></article>
+      <article class="card"><h3>Project Three</h3><p>Exploring cybersecurity concepts & vulnerability analysis.</p></article>
     </div>
   </div>
 </section>
 
 <section id="contact" class="section">
   <div class="inner">
-    <div class="centered"><h2>Contact</h2><p>Let's connect! You can reach me at:</p></div>
+    <div class="centered"><h2>Contact</h2></div>
     <ul class="contact-list">
       <li>Facebook: <a href="https://www.facebook.com/share/1CbQy9oiri/" target="_blank">My Facebook</a></li>
       <li>GitHub: <a href="https://github.com/bokol331-svg" target="_blank">bokol331-svg</a></li>
@@ -148,57 +141,97 @@ footer{ padding:36px var(--page-padding); text-align:center; background:#0a0a0a;
     </ul>
   </div>
 </section>
+
 <footer><p>© 2025 Hezekiah Owen L. Bullagay. All Rights Reserved.</p></footer>
 </div>
 
-<!-- Page 2: Educational Attainment -->
-<div id="page2" class="page2">
+<!-- PAGE 2 — EDUCATION -->
+<div id="page2" class="page2 fade-page">
   <h2>Educational Attainment</h2>
   <ul>
     <li>
       <strong>University of the Cordilleras — BSIT (Cyber Security)</strong><br>
       2025 — Present • Current Student<br>
-      Currently pursuing a Bachelor of Science in Information Technology, Network & Security Track.<br>
-      Learning HTML, CSS, JavaScript, and Python.<br>
-      Projects: Personal portfolio website.
+      Studying HTML, CSS, JavaScript, Python.
     </li>
+
     <li>
-      <strong>Cuyapo National High School — Grade 12 ICT Strand</strong><br>
-      2025 • Completed TESDA Online Program: Computer Systems Servicing NC II
+      <strong>Cuyapo National High School — Senior High School (ICT Strand)</strong><br>
+      Completed TESDA Online Program: CSS NC II
+    </li>
+
+    <li>
+      <strong>San Francisco National High School — Junior High School</strong><br>
+      Completed Grades 7–10
+    </li>
+
+    <li>
+      <strong>San Francisco Elementary School — Elementary</strong><br>
+      Completed Grades 1–6
     </li>
   </ul>
-  <a class="btn" onclick="showPage('page1')">Back to Home</a>
+  <a class="btn" onclick="switchPage('home')">Back to Home</a>
+</div>
+
+<!-- PAGE 3 — EXTRA CURRICULAR -->
+<div id="page3" class="page3 fade-page">
+  <h2>Extra Curricular</h2>
+  <ul>
+    <li>
+      <strong>Brown Belt – Karate</strong><br>
+      Earned under <strong>Arodans Judo Karate Worldwide (AJKW)</strong>, building discipline, physical skill, and perseverance.
+    </li>
+    <li>
+      <strong>Green Belt – Arnis</strong><br>
+      Earned under <strong>Arodans Judo Karate Worldwide (AJKW)</strong>, building discipline, physical skill, and perseverance.
+    </li>
+    <li>
+      <strong>Debate & Public Speaking</strong><br>Engaged in school debate circles, improving critical thinking, argument structure, and confident delivery.
+    </li>
+    <li>
+      <strong>Historical Research & Studies</strong><br>Participated in history-related activities, analyzing major events and connecting them to modern contexts.
+    </li>
+    <li>
+      <strong>Active Cybersecurity Self-Study</strong><br>Exploring Kali Linux, penetration testing tools, and ethical hacking fundamentals.
+    </li>
+    <li>
+      <strong>Online Cybersecurity Courses (Udemy)</strong><br>Learning website hacking basics, Python for ethical hacking, and structured cybersecurity foundations.
+    </li>
+    <li>
+      <strong>Independent Programming & IT Practice</strong><br>Working on coding, networking, and IT projects to strengthen technical skills.
+    </li>
+  </ul>
+  <a class="btn" onclick="switchPage('home')">Back to Home</a>
 </div>
 
 <script>
-// IntersectionObserver for project cards
 function initObserver(){
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, {threshold: 0.2});
-  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:0.2});
+  document.querySelectorAll('.card').forEach(card=>observer.observe(card));
 }
 
-// Show/hide pages
-function showPage(pageId){
-  if(pageId === 'education'){
-    document.getElementById('page1').style.display = 'none';
-    document.getElementById('page2').style.display = 'block';
-  } else {
-    document.getElementById('page1').style.display = 'block';
-    document.getElementById('page2').style.display = 'none';
-    const sec = document.getElementById(pageId);
-    if(sec) window.scrollTo({top:sec.offsetTop - 60, behavior:'smooth'});
-    initObserver(); // re-init animations
+function switchPage(section){
+  const pages=[document.getElementById('page1'),document.getElementById('page2'),document.getElementById('page3')];
+  pages.forEach(p=>p.classList.remove('active'));
+  pages.forEach(p=>p.style.display='none');
+
+  let target;
+  if(section==='education') target=document.getElementById('page2');
+  else if(section==='extracurricular') target=document.getElementById('page3');
+  else target=document.getElementById('page1');
+
+  target.style.display='block';
+  setTimeout(()=>{ target.classList.add('active'); },10);
+
+  if(section!=='education' && section!=='extracurricular'){
+    const sec=document.getElementById(section);
+    if(sec) window.scrollTo({top:sec.offsetTop-60,behavior:'smooth'});
   }
+
+  initObserver();
 }
 
-// Initialize animations on page load
-window.addEventListener('load', () => {
-  initObserver();
-});
+window.addEventListener('load',()=> initObserver());
 </script>
 
 </body>
