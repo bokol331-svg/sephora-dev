@@ -1,431 +1,486 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-<meta charset="utf-8" /> 
-<meta name="viewport" content="width=device-width,initial-scale=1" /> 
-<title>Hezekiah Owen L. Bullagay | Portfolio</title> 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"> 
-
-<style> 
-:root { 
---accent:#e63946; 
---bg-dark:#0d0d0d; 
---bg-light:#1a1a1a; 
---text-light:#f5f5f5; 
---muted:#bbb; 
---card-bg:#151515; 
---page-padding:4%; 
---max-width:900px; 
-} 
-
-*{box-sizing:border-box;margin:0;padding:0;} 
-html,body{height:100%;} 
-
-body{ 
-font-family:"Poppins",sans-serif; 
-background:linear-gradient(180deg,var(--bg-dark),#1c1c1c); 
-color:var(--text-light); 
-line-height:1.4; 
-overflow:hidden; 
-} 
-
-.fade-page { 
-opacity:0; 
-transition:opacity 0.45s ease; 
-min-height:calc(100vh - 72px); 
-} 
-
-.fade-page.active { 
-opacity:1; 
-} 
-
-nav{ 
-background:rgba(10,10,10,0.95); 
-display:flex; 
-align-items:center; 
-justify-content:space-between; 
-padding:10px var(--page-padding); 
-position:sticky; 
-top:0; 
-z-index:1000; 
-border-bottom:1px solid rgba(255,255,255,0.08); 
-} 
-
-.logo{display:flex;align-items:center;gap:8px;} 
-.logo img{width:36px;height:36px;border-radius:50%;object-fit:contain;border:2px solid var(--accent);} 
-.logo h1{font-family:"Playfair Display",serif;font-size:18px;color:var(--accent);margin-left:4px;} 
-
-nav ul{list-style:none;display:flex;gap:12px;font-size:12px;margin-left:8px;} 
-nav a{ 
-color:var(--text-light); 
-text-decoration:none; 
-font-weight:600; 
-cursor:pointer; 
-position:relative; 
-transition:color 0.22s; 
-} 
-
-nav a::after{ 
-content:""; 
-position:absolute; 
-bottom:-3px; 
-left:0; 
-width:0; 
-height:1px; 
-background:var(--accent); 
-transition:0.22s; 
-} 
-
-nav a:hover{color:var(--accent);} 
-nav a:hover::after{width:100%;} 
-
-header#home{ 
-padding:18px var(--page-padding); 
-display:flex; 
-align-items:center; 
-justify-content:space-between; 
-max-width:var(--max-width); 
-margin:0 auto; 
-gap:20px; 
-} 
-
-.intro h1{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:8px;} 
-.intro h1 span{color:var(--accent);} 
-.intro p{color:var(--muted);margin-bottom:10px;max-width:45ch;font-size:12px;} 
-
-.btn{ 
-display:inline-block; 
-padding:6px 14px; 
-border-radius:16px; 
-background:var(--accent); 
-color:#fff; 
-text-decoration:none; 
-font-weight:600; 
-font-size:12px; 
-cursor:pointer; 
-transition:transform 0.18s; 
-} 
-
-.btn:hover{transform:translateY(-2px);} 
-
-.hero-img{ 
-width:160px;height:160px; 
-border-radius:50%; 
-overflow:hidden; 
-border:3px solid var(--accent); 
-box-shadow:0 6px 20px rgba(255,0,0,0.15); 
-display:flex;align-items:center;justify-content:center; 
-} 
-
-.hero-img img{width:100%;height:100%;object-fit:cover;} 
-
-.section{padding:10px var(--page-padding);background:var(--bg-light);} 
-.section .inner{max-width:var(--max-width);margin:0 auto;padding-bottom:8px;} 
-
-.centered{text-align:center;margin-bottom:10px;} 
-.centered h2{font-family:"Playfair Display",serif;font-size:16px;color:var(--accent);} 
-.centered p{color:var(--muted);font-size:12px;} 
-
-.project-grid{ 
-display:grid; 
-grid-template-columns:repeat(3,1fr); 
-gap:10px; 
-align-items:start; 
-} 
-
-.card{ 
-background:var(--card-bg); 
-padding:12px; 
-border-radius:8px; 
-border:1px solid rgba(255,255,255,0.06); 
-box-shadow:0 3px 8px rgba(0,0,0,0.25); 
-text-align:left; 
-opacity:0; 
-transform:translateY(10px); 
-transition:all 0.35s ease; 
-height:100px; 
-display:flex; 
-flex-direction:column; 
-justify-content:center; 
-gap:6px; 
-} 
-
-.card.visible{opacity:1;transform:translateY(0);} 
-.card:hover{ 
-transform:translateY(-4px) scale(1.01); 
-border-color:var(--accent); 
-box-shadow:0 8px 18px rgba(230,57,70,0.12); 
-} 
-
-.card h3{color:var(--accent);margin:0;font-size:13px;} 
-.card p{font-size:11px;color:var(--muted);margin:0;} 
-
-.contact-list{text-align:center;list-style:none;font-size:11px;margin-top:10px;} 
-.contact-list li{margin:3px 0;} 
-.contact-list a{color:var(--accent);text-decoration:none;font-weight:600;} 
-
-footer{ 
-padding:12px var(--page-padding); 
-text-align:center; 
-background:#0a0a0a; 
-color:#888; 
-border-top:1px solid rgba(255,255,255,0.08); 
-font-size:10px; 
-} 
-
-.page2,.page3,.page4,.page5{ 
-display:none; 
-padding:12px var(--page-padding); 
-max-width:var(--max-width); 
-margin:0 auto; 
-background:var(--bg-light); 
-} 
-
-.page2 h2,.page3 h2,.page4 h2,.page5 h2{ 
-color:var(--accent); 
-text-align:center; 
-margin-bottom:10px; 
-font-size:16px; 
-} 
-
-.page2 ul,.page3 ul,.page4 ul,.page5 ul{ 
-list-style:none; color:#ddd; font-size:12px; padding:0; 
-} 
-
-.page2 li,.page3 li,.page4 li,.page5 li{margin:8px 0;line-height:1.4;} 
-
-.education-item{ 
-display:flex; 
-align-items:center; 
-gap:12px; 
-margin-bottom:12px; 
-} 
-
-@media(max-width:1024px){ 
-.project-grid{grid-template-columns:repeat(2,1fr);} 
-header#home{gap:12px;padding:14px var(--page-padding);} 
-} 
-
-@media(max-width:720px){ 
-header#home{flex-direction:column-reverse;text-align:center;padding:12px var(--page-padding);} 
-.project-grid{grid-template-columns:1fr;gap:12px;} 
-.hero-img{margin-bottom:10px;width:140px;height:140px;} 
-.intro h1{font-size:20px;} 
-.card{height:92px;} 
-.education-item{flex-direction:column;align-items:flex-start;} 
-} 
-</style> 
-
-</head> 
-
-<body> 
-
-<nav> 
-<div class="logo"> 
-<img src="1000037617.png" alt="logo"> 
-<h1>My Portfolio</h1> 
-</div> 
-<ul> 
-<li><a onclick="switchPage('home')">Home</a></li> 
-<li><a onclick="switchPage('education')">Education</a></li> 
-<li><a onclick="switchPage('extracurricular')">Extra Curricular</a></li> 
-<li><a onclick="switchPage('page4')">My Family</a></li> 
-<li><a onclick="switchPage('page5')">Classmates</a></li> 
-</ul> 
-</nav> 
-
-<!-- PAGE 1 --> 
-<div id="page1" class="fade-page active"> 
-<header id="home"> 
-<div class="intro"> 
-<h1>Welcome — I'm <br><span>Hezekiah Owen L. Bullagay</span></h1> 
-<p>BSIT student (Network & Security) at the University of the Cordilleras.</p> 
-</div> 
-<div class="hero-img"> 
-<img src="914fe75c-de75-49e6-a142-d5e22ed5db74.jpg" alt="Hezekiah"> 
-</div> 
-</header> 
-
-<section id="about" class="section"> 
-<div class="inner"> 
-<div class="centered"> 
-<h2>About Me</h2> 
-<p>I am Hezekiah Owen Bullagay, born in Sudipen, La Union, and a newcomer to Baguio. I am 18 years old and a newly enrolled freshman at the University of the Cordilleras...</p> 
-</div> 
-
-<div style="height:28px;"></div> 
-
-<div style="text-align:center; margin:14px 0;"> 
-<button class="btn" onclick="switchPage('education')">Next Page →</button> 
-</div> 
-
-<ul class="contact-list" style="margin:14px 0;"> 
-<li>Facebook: <a href="https://www.facebook.com/share/1CbQy9oiri/" target="_blank">My Facebook</a></li> 
-<li>GitHub: <a href="https://github.com/bokol331-svg" target="_blank">bokol331-svg</a></li> 
-<li>LinkedIn: <a href="https://www.linkedin.com/in/ya-hussain-ya-ali-ali-866a29361/" target="_blank">ya-hussain-ya-ali-ali</a></li> 
-</ul> 
-
-<div class="centered" style="margin-top:18px;"> 
-<h2>Projects</h2> 
-</div> 
-
-<div class="project-grid"> 
-<article class="card"><h3>Project One</h3><p>Studying Java, HTML, and Python.</p></article> 
-<article class="card"><h3>Project Two</h3><p>This portfolio website documenting my growth.</p></article> 
-<article class="card"><h3>Project Three</h3><p>Exploring cybersecurity concepts & vulnerability analysis.</p></article> 
-</div> 
-
-</div> 
-</section> 
-
-<footer> 
-<p>© 2025 Hezekiah Owen L. Bullagay. All Rights Reserved.</p> 
-</footer> 
-</div> 
-
-<!-- PAGE 2 — EDUCATION --> 
-<div id="page2" class="page2 fade-page"> 
-<h2>Educational Attainment</h2> 
-<ul> 
-<li class="education-item"> 
-<img src="uc_official_seal.jpg.png" alt="UC Logo" style="width:60px;height:60px;object-fit:contain;"> 
-<span> 
-<strong>University of the Cordilleras — BSIT (Cyber Security)</strong><br> 
-2025 — Present • Current Student<br> 
-Studying HTML, CSS, JavaScript, Python. 
-</span> 
-</li> 
-
-<li><strong>Cuyapo National High School — Senior High School (ICT Strand)</strong><br>Completed TESDA Online Program: CSS NC II</li> 
-<li><strong>San Francisco National High School</strong><br>Completed Grades 7–10</li> 
-<li><strong>San Francisco Elementary School</strong><br>Completed Grades 1–6</li> 
-</ul> 
-
-<div style="text-align:center; margin-top:12px;"> 
-<button class="btn" onclick="switchPage('home')">← Previous Page</button> 
-<button class="btn" onclick="switchPage('extracurricular')">Next Page →</button> 
-</div> 
-</div> 
-
-<!-- PAGE 3 — EXTRA CURRICULAR --> 
-<div id="page3" class="page3 fade-page"> 
-<h2>Extra Curricular</h2> 
-
-<ul> 
-<li><strong>Brown Belt – Karate</strong><br> Earned under Arodans Judo Karate Worldwide (AJKW), building discipline, physical skill, and perseverance.</li> 
-<li><strong>Green Belt – Arnis</strong><br> Earned under Arodans Judo Karate Worldwide (AJKW).</li> 
-<li><strong>Debate & Public Speaking</strong><br> Improving critical thinking and confident delivery.</li> 
-<li><strong>Historical Research & Studies</strong><br> Analyzing major events and connecting them to modern contexts.</li> 
-<li><strong>Active Cybersecurity Self-Study</strong><br> Exploring Kali Linux, penetration testing tools, and ethical hacking fundamentals.</li> 
-<li><strong>Online Cybersecurity Courses (Udemy)</strong><br> Learning website hacking basics, Python for ethical hacking, and structured cybersecurity foundations.</li> 
-<li><strong>Independent Programming & IT Practice</strong><br> Working on coding, networking, and IT projects to strengthen technical skills.</li> 
-</ul> 
-
-<div style="text-align:center; margin-top:12px;"> 
-<button class="btn" onclick="switchPage('education')">← Previous Page</button> 
-<button class="btn" onclick="switchPage('page4')">Next Page →</button> 
-</div> 
-</div> 
-
-<!-- PAGE 4 — MY FAMILY --> 
-<div id="page4" class="page4 fade-page"> 
-<h2>My Family</h2> 
-
-<p style="text-align:center; color:#ccc; font-size:12px; margin-bottom:16px;"> 
-Here is a glimpse of my family — my mother and father, and me as their only child. 
-</p> 
-
-<div style=" display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; "> 
-
-<!-- MOTHER --> 
-<div style=" background:#121212; border:1px solid rgba(255,255,255,0.07); padding:12px; width:180px; border-radius:10px; text-align:center; "> 
-<h3 style="color:white; font-size:14px; margin-bottom:8px;">MOTHER</h3> 
-<img src="40bf07e0-2bc8-4ede-8c37-953da2b0333b.jpg" alt="Mother" style="width:100%; border-radius:8px; margin-bottom:8px;"> 
-<p style="color:#ccc; font-size:11px;"> Singapore Sentosa Cable Car </p> 
-</div> 
-
-<!-- FATHER --> 
-<div style=" background:#121212; border:1px solid rgba(255,255,255,0.07); padding:12px; width:180px; border-radius:10px; text-align:center; "> 
-<h3 style="color:white; font-size:14px; margin-bottom:8px;">FATHER</h3> 
-<img src="dae8d204-f790-4c02-96fa-97761a884e9a.jpg" alt="Father" style="width:100%; border-radius:8px; margin-bottom:8px;"> 
-<p style="color:#ccc; font-size:11px;"> Walking together </p> 
-</div> 
-</div> 
-
-<!-- BUTTONS (YOUR REQUESTED EDIT IS HERE) --> 
-<div style="text-align:center; margin-top:16px;"> 
-<button class="btn" onclick="switchPage('extracurricular')">← Previous Page</button> 
-<button class="btn" onclick="switchPage('page5')">Next Page →</button> 
-</div> 
-
-</div> 
-
-<!-- PAGE 5 — CLASSMATES --> 
-<div id="page5" class="page5 fade-page"> 
-<h2>Classmates</h2> 
-
-<p style="text-align:center; color:#ccc; font-size:12px; margin-bottom:16px;"> 
-Batchmates of 2025-2029 blockmates of College in the CICS department 1A as I.T. Specialists in University of the Cordilleras 
-</p> 
-
-<div style=" display:flex; justify-content:center; "> 
-<img src="7d9045b8-fbe8-4910-a35d-007ef0494600.jpg" style="width:100%;max-width:680px;border-radius:10px;border:1px solid rgba(255,255,255,0.07);"> 
-</div> 
-
-<div style="text-align:center; margin-top:16px;"> 
-<button class="btn" onclick="switchPage('page4')">← Previous Page</button> 
-</div> 
-
-</div> 
-
-<script> 
-function initObserver(){ 
-const observer = new IntersectionObserver(entries=>{ 
-entries.forEach(entry=>{ 
-if(entry.isIntersecting) entry.target.classList.add('visible'); 
-}); 
-},{threshold:0.15}); 
-
-document.querySelectorAll('.card').forEach(card=>observer.observe(card)); 
-} 
-
-function switchPage(section){ 
-const pages=[ 
-document.getElementById('page1'), 
-document.getElementById('page2'), 
-document.getElementById('page3'), 
-document.getElementById('page4'), 
-document.getElementById('page5') 
-]; 
-
-pages.forEach(p=>{ 
-p.classList.remove('active'); 
-p.style.display='none'; 
-}); 
-
-let target; 
-
-if(section==='education') target=document.getElementById('page2'); 
-else if(section==='extracurricular') target=document.getElementById('page3'); 
-else if(section==='page4') target=document.getElementById('page4'); 
-else if(section==='page5') target=document.getElementById('page5'); 
-else target=document.getElementById('page1'); 
-
-target.style.display='block'; 
-
-setTimeout(()=>{ 
-target.classList.add('active'); 
-},10); 
-
-initObserver(); 
-} 
-
-window.addEventListener('load',()=>{ 
-document.getElementById('page1').style.display='block'; 
-document.getElementById('page1').classList.add('active'); 
-initObserver(); 
-}); 
-</script> 
-
-</body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hezekiah Owen L. Bullagay | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--accent:#e63946;
+--bg-dark:#0d0d0d;
+--bg-light:#1a1a1a;
+--text-light:#f5f5f5;
+--muted:#bbb;
+--card-bg:#151515;
+--page-padding:4%;
+--max-width:900px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+
+body{
+font-family:"Poppins",sans-serif;
+background:linear-gradient(180deg,var(--bg-dark),#1c1c1c);
+color:var(--text-light);
+line-height:1.4;
+overflow-x:hidden;
+}
+
+.fade-page {
+opacity:0;
+transition:opacity 0.45s ease;
+min-height:calc(100vh - 72px);
+}
+
+.fade-page.active {
+opacity:1;
+}
+
+nav{
+background:rgba(10,10,10,0.95);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px var(--page-padding);
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{display:flex;align-items:center;gap:8px;}
+.logo img{width:36px;height:36px;border-radius:50%;object-fit:contain;border:2px solid var(--accent);}
+.logo h1{font-family:"Playfair Display",serif;font-size:18px;color:var(--accent);margin-left:4px;}
+
+nav ul{list-style:none;display:flex;gap:12px;font-size:12px;margin-left:8px;}
+nav a{
+color:var(--text-light);
+text-decoration:none;
+font-weight:600;
+cursor:pointer;
+position:relative;
+transition:color 0.22s;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+bottom:-3px;
+left:0;
+width:0;
+height:1px;
+background:var(--accent);
+transition:0.22s;
+}
+
+nav a:hover{color:var(--accent);}
+nav a:hover::after{width:100%;}
+
+header#home{
+padding:18px var(--page-padding);
+display:flex;
+align-items:center;
+justify-content:space-between;
+max-width:var(--max-width);
+margin:0 auto;
+gap:20px;
+}
+
+.intro h1{font-family:"Playfair Display",serif;font-size:22px;margin-bottom:8px;}
+.intro h1 span{color:var(--accent);}
+.intro p{color:var(--muted);margin-bottom:10px;max-width:45ch;font-size:12px;}
+
+.btn{
+display:inline-block;
+padding:6px 14px;
+border-radius:16px;
+background:var(--accent);
+color:#fff;
+text-decoration:none;
+font-weight:600;
+font-size:12px;
+cursor:pointer;
+transition:transform 0.18s;
+}
+
+.btn:hover{transform:translateY(-2px);}
+
+.hero-img{
+width:160px;height:160px;
+border-radius:50%;
+overflow:hidden;
+border:3px solid var(--accent);
+box-shadow:0 6px 20px rgba(255,0,0,0.15);
+display:flex;align-items:center;justify-content:center;
+}
+
+.hero-img img{width:100%;height:100%;object-fit:cover;}
+
+.section{padding:10px var(--page-padding);background:var(--bg-light);}
+.section .inner{max-width:var(--max-width);margin:0 auto;padding-bottom:8px;}
+
+.centered{text-align:center;margin-bottom:10px;}
+.centered h2{font-family:"Playfair Display",serif;font-size:16px;color:var(--accent);}
+.centered p{color:var(--muted);font-size:12px;}
+
+.project-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+align-items:start;
+}
+
+.card{
+background:var(--card-bg);
+padding:12px;
+border-radius:8px;
+border:1px solid rgba(255,255,255,0.06);
+box-shadow:0 3px 8px rgba(0,0,0,0.25);
+text-align:left;
+opacity:0;
+transform:translateY(10px);
+transition:all 0.35s ease;
+height:100px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+gap:6px;
+}
+
+.card.visible{opacity:1;transform:translateY(0);}
+.card:hover{
+transform:translateY(-4px) scale(1.01);
+border-color:var(--accent);
+box-shadow:0 8px 18px rgba(230,57,70,0.12);
+}
+
+.card h3{color:var(--accent);margin:0;font-size:13px;}
+.card p{font-size:11px;color:var(--muted);margin:0;}
+
+.contact-list{text-align:center;list-style:none;font-size:11px;margin-top:10px;}
+.contact-list li{margin:3px 0;}
+.contact-list a{color:var(--accent);text-decoration:none;font-weight:600;}
+
+footer{
+padding:12px var(--page-padding);
+text-align:center;
+background:#0a0a0a;
+color:#888;
+border-top:1px solid rgba(255,255,255,0.08);
+font-size:10px;
+}
+
+.page2,.page3,.page4,.page5{
+display:none;
+padding:12px var(--page-padding);
+max-width:var(--max-width);
+margin:0 auto;
+background:var(--bg-light);
+}
+
+.page2 h2,.page3 h2,.page4 h2,.page5 h2{
+color:var(--accent);
+text-align:center;
+margin-bottom:10px;
+font-size:16px;
+}
+
+.page2 ul,.page3 ul,.page4 ul,.page5 ul{
+list-style:none; color:#ddd; font-size:12px; padding:0;
+}
+
+.page2 li,.page3 li,.page4 li,.page5 li{margin:8px 0;line-height:1.4;}
+
+.education-item{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:12px;
+}
+
+@media(max-width:1024px){
+.project-grid{grid-template-columns:repeat(2,1fr);}
+header#home{gap:12px;padding:14px var(--page-padding);}
+}
+
+@media(max-width:720px){
+header#home{flex-direction:column-reverse;text-align:center;padding:12px var(--page-padding);}
+.project-grid{grid-template-columns:1fr;gap:12px;}
+.hero-img{margin-bottom:10px;width:140px;height:140px;}
+.intro h1{font-size:20px;}
+.card{height:92px;}
+.education-item{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">
+<img src="1000037617.png" alt="logo">
+<h1>My Portfolio</h1>
+</div>
+<ul>
+<li><a onclick="switchPage('page1')">Home</a></li>
+<li><a onclick="switchPage('page2')">Education</a></li>
+<li><a onclick="switchPage('page3')">Extra Curricular</a></li>
+<li><a onclick="switchPage('page4')">My Family</a></li>
+<li><a onclick="switchPage('page5')">My Batchmates</a></li>
+</ul>
+</nav>
+
+<!-- PAGE 1 -->
+<div id="page1" class="fade-page active">
+<header id="home">
+<div class="intro">
+<h1>Welcome — I'm <br><span>Hezekiah Owen L. Bullagay</span></h1>
+<p>BSIT student (Network & Security) at the University of the Cordilleras.</p>
+</div>
+<div class="hero-img">
+<img src="914fe75c-de75-49e6-a142-d5e22ed5db74.jpg" alt="Hezekiah">
+</div>
+</header>
+
+<section id="about" class="section">
+<div class="inner">
+<div class="centered">
+<h2>About Me</h2>
+<p>I am Hezekiah Owen Bullagay, born in Sudipen, La Union, and a newcomer to Baguio. I am 18 years old and a newly enrolled freshman at the University of the Cordilleras...</p>
+</div>
+
+<div style="height:28px;"></div>
+
+<div style="text-align:center; margin:14px 0;">
+<button class="btn" onclick="switchPage('page2')">Next Page →</button>
+</div>
+
+<ul class="contact-list" style="margin:14px 0;">
+<li>Facebook: <a href="https://www.facebook.com/share/1CbQy9oiri/" target="_blank">My Facebook</a></li>
+<li>GitHub: <a href="https://github.com/bokol331-svg" target="_blank">bokol331-svg</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/ya-hussain-ya-ali-ali-866a29361/" target="_blank">ya-hussain-ya-ali-ali</a></li>
+</ul>
+
+<div class="centered" style="margin-top:18px;">
+<h2>Projects</h2>
+</div>
+
+<div class="project-grid">
+<article class="card"><h3>Project One</h3><p>Studying Java, HTML, and Python.</p></article>
+<article class="card"><h3>Project Two</h3><p>This portfolio website documenting my growth.</p></article>
+<article class="card"><h3>Project Three</h3><p>Exploring cybersecurity concepts & vulnerability analysis.</p></article>
+</div>
+</div>
+</section>
+
+<footer>
+<p>© 2025 Hezekiah Owen L. Bullagay. All Rights Reserved.</p>
+</footer>
+</div>
+
+<!-- PAGE 2 — EDUCATION -->
+<div id="page2" class="page2 fade-page">
+<h2>Educational Attainment</h2>
+<ul>
+<li class="education-item">
+<img src="uc_official_seal.jpg.png" alt="UC Logo" style="width:60px;height:60px;object-fit:contain;">
+<span>
+<strong>University of the Cordilleras — BSIT (Cyber Security)</strong><br>
+2025 — Present • Current Student<br>
+Studying HTML, CSS, JavaScript, Python.
+</span>
+</li>
+
+<li><strong>Cuyapo National High School — Senior High School (ICT Strand)</strong><br>Completed TESDA Online Program: CSS NC II</li>
+<li><strong>San Francisco National High School</strong><br>Completed Grades 7–10</li>
+<li><strong>San Francisco Elementary School</strong><br>Completed Grades 1–6</li>
+</ul>
+
+<div style="text-align:center; margin-top:12px;">
+<button class="btn" onclick="switchPage('page1')">← Previous Page</button>
+<button class="btn" onclick="switchPage('page3')">Next Page →</button>
+</div>
+</div>
+
+<!-- PAGE 3 — EXTRA CURRICULAR -->
+<div id="page3" class="page3 fade-page">
+<h2>Extra Curricular</h2>
+<ul>
+<li><strong>Brown Belt – Karate</strong><br> Earned under Arodans Judo Karate Worldwide (AJKW), building discipline, physical skill, and perseverance.</li>
+<li><strong>Green Belt – Arnis</strong><br> Earned under Arodans Judo Karate Worldwide (AJKW).</li>
+<li><strong>Debate & Public Speaking</strong><br> Improving critical thinking and confident delivery.</li>
+<li><strong>Historical Research & Studies</strong><br> Analyzing major events and connecting them to modern contexts.</li>
+<li><strong>Active Cybersecurity Self-Study</strong><br> Exploring Kali Linux, penetration testing tools, and ethical hacking fundamentals.</li>
+<li><strong>Online Cybersecurity Courses (Udemy)</strong><br> Learning website hacking basics, Python for ethical hacking, and structured cybersecurity foundations.</li>
+<li><strong>Independent Programming & IT Practice</strong><br> Working on coding, networking, and IT projects to strengthen technical skills.</li>
+</ul>
+
+<div style="text-align:center; margin-top:12px;">
+<button class="btn" onclick="switchPage('page2')">← Previous Page</button>
+<button class="btn" onclick="switchPage('page4')">Next Page →</button>
+</div>
+</div>
+
+<!-- PAGE 4 — MY FAMILY -->
+<div id="page4" class="page4 fade-page">
+<h2>My Family</h2>
+
+<p style="text-align:center; color:#ccc; font-size:12px; margin-bottom:16px;">
+Here is a glimpse of my family — my mother and father, and me as their only child.
+</p>
+
+<div style=" display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px; ">
+
+<!-- MOTHER -->
+<div style=" background:#121212; border:1px solid rgba(255,255,255,0.07); padding:12px; width:180px; border-radius:10px; text-align:center; ">
+<h3 style="color:white; font-size:14px; margin-bottom:8px;">MOTHER</h3>
+<img src="40bf07e0-2bc8-4ede-8c37-953da2b0333b.jpg" alt="Mother" style="width:100%; border-radius:8px; margin-bottom:8px;">
+<p style="color:#ccc; font-size:11px;"> Singapore Sentosa Cable Car </p>
+</div>
+
+<!-- FATHER -->
+<div style=" background:#121212; border:1px solid rgba(255,255,255,0.07); padding:12px; width:180px; border-radius:10px; text-align:center; ">
+<h3 style="color:white; font-size:14px; margin-bottom:8px;">FATHER</h3>
+<img src="dae8d204-f790-4c02-96fa-97761a884e9a.jpg" alt="Father" style="width:100%; border-radius:8px; margin-bottom:8px;">
+<p style="color:#ccc; font-size:11px;"> Walking together </p>
+</div>
+</div>
+
+<div style="text-align:center; margin-top:16px;">
+<button class="btn" onclick="switchPage('page3')">← Previous Page</button>
+<button class="btn" onclick="switchPage('page5')">Next Page →</button>
+</div>
+
+</div>
+
+<!-- PAGE 5 — THE "DYISLERS" -->
+<div id="page5" class="page5 fade-page">
+<h2 style="text-align:center;">The "Dyislers"</h2>
+
+<p style="text-align:center; color:#ccc; font-size:12px; margin-bottom:10px;">
+Batchmates of 2025-2029, blockmates of College in the CICS department 1A as I.T. Specialists in University of the Cordilleras
+</p>
+
+<div style="text-align:center; margin-bottom:12px;">
+<img src="7d9045b8-fbe8-4910-a35d-007ef0494600.jpg"
+     alt="Batchmates"
+     style="width:60%; max-width:450px; height:auto; border-radius:8px; border:1px solid rgba(255,255,255,0.07);">
+</div>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+gap:6px 10px;
+max-width:900px;
+margin:0 auto;
+font-size:11px;
+line-height:1.1;
+color:#ddd;
+text-align:left;
+padding:0 6px;
+">
+<div>Abance, Alvin</div>
+<div>Abiado, Mark Jhon</div>
+<div>Bacun, Johanna Christine</div>
+<div>Bangguiyao, Mark Kevin</div>
+
+<div>Barrioga, Esteban Jr.</div>
+<div>Bekisan, Shania Faith</div>
+<div>Bucatan, Janryl</div>
+<div>Bullagay, Hezekiah</div>
+
+<div>Castellano, Katherine Nicolle</div>
+<div>Celino, Lawrence Dave</div>
+<div>Costina, Eugene Ray</div>
+<div>Dulnuan, Jessie</div>
+
+<div>Ekwasen, Jan Mark</div>
+<div>Estepa, Bency Blue</div>
+<div>Fernandez, Sam Archer</div>
+<div>Kindahan, Joshua</div>
+
+<div>Licupa, Jeremie Craig</div>
+<div>Lisking, Gyahn</div>
+<div>Lunag, Azriel Jared</div>
+<div>Markub, Justin</div>
+
+<div>Nagen, Ivan Troy</div>
+<div>Noventa, Glaiza Mae</div>
+<div>Onnon, Brian Bruce</div>
+<div>Padios, Jimuel</div>
+
+<div>Panelo, Prince Marky</div>
+<div>Panes, Ralph Matthew</div>
+<div>Pataueg, Jehnnie Lyn</div>
+<div>Quintinita, Lanz Jyro</div>
+
+<div>Quiros, Jeca</div>
+<div>Requiero, Jay-r</div>
+<div>Rico, Louis Inigo</div>
+<div>Sagapen, Benjamin</div>
+
+<div>San Pedro, Ralph Matthew</div>
+<div>Santiago, Arthur John</div>
+<div>Sarmiento, Justine Von</div>
+<div>Soley, Lean Jobelle</div>
+
+<div>Tacio, Reyan</div>
+<div>Talic, Karianne Clarisse</div>
+<div>Umaging, Kazler Carl</div>
+<div>Ventura, Jamal</div>
+</div>
+
+<div style="text-align:center; margin-top:12px;">
+<button class="btn" onclick="switchPage('page4')">← Previous Page</button>
+</div>
+</div>
+
+<script>
+function initObserver(){
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add('visible');
+});
+},{threshold:0.15});
+
+document.querySelectorAll('.card').forEach(card=>observer.observe(card));
+}
+
+function switchPage(section){
+const pages=[
+document.getElementById('page1'),
+document.getElementById('page2'),
+document.getElementById('page3'),
+document.getElementById('page4'),
+document.getElementById('page5')
+];
+
+pages.forEach(p=>{
+p.classList.remove('active');
+p.style.display='none';
+});
+
+let target;
+
+if(section==='page2' || section==='education') target=document.getElementById('page2');
+else if(section==='page3' || section==='extracurricular') target=document.getElementById('page3');
+else if(section==='page4') target=document.getElementById('page4');
+else if(section==='page5' || section==='batchmates') target=document.getElementById('page5');
+else target=document.getElementById('page1');
+
+target.style.display='block';
+setTimeout(()=>{ target.classList.add('active'); },10);
+initObserver();
+}
+
+window.addEventListener('load',()=>{
+document.getElementById('page1').style.display='block';
+document.getElementById('page1').classList.add('active');
+initObserver();
+});
+</script>
+
+</body>
 </html>
